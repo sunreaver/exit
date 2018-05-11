@@ -12,8 +12,8 @@ Example:
   )
 
   func main() {
-    o := make(chan *exit.Channel, 1)
-    c := exit.RegisteExiter(o)
+	over := exit.NewChannel()
+    c := exit.RegistExiter(over)
 
     select {
     case <-c:
@@ -23,7 +23,7 @@ Example:
     // do something
     // example: flush buffer
 
-    close(o)
+    close(over)
 
     select {}
 
