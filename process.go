@@ -10,9 +10,9 @@ import (
 
 var (
 	data = Group{
-		needExit: true,
-		wg:       &sync.WaitGroup{},
-		group:    list.New(),
+		NeedExit: true,
+		WG:       &sync.WaitGroup{},
+		Data:     list.New(),
 	}
 )
 
@@ -25,7 +25,7 @@ func notify() {
 		switch s {
 		case syscall.SIGHUP, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT:
 			go func() {
-				if data.exit() {
+				if data.Exit() {
 					os.Exit(0)
 				}
 			}()

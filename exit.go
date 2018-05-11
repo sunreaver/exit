@@ -20,8 +20,8 @@ func RegisteExiter(delay <-chan *Channel) (exit <-chan *Channel) {
 
 	e := make(chan *Channel, 1)
 	v := &GroupValue{
-		c:     e,
-		delay: delay,
+		C:     e,
+		Delay: delay,
 	}
 	data.Add(v)
 	return e

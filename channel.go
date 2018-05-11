@@ -5,24 +5,25 @@ type Channel interface{}
 
 // GroupValue define 退出信号和等待时间
 type GroupValue struct {
-	c     chan *Channel
-	delay <-chan *Channel
+	C     chan *Channel
+	Delay <-chan *Channel
 }
 
-func (g *GroupValue) do() (done func()) {
+// NotifyExit 通知注册方退出信号到达
+func (g *GroupValue) NotifyExit() (done func()) {
 	go func() {
 		defer func() {
 			recover()
 		}()
-		close(g.c)
+		close(g.C)
 	}()
 
-	delay := g.delay
+	delay := g.Delay
 
 	return func() {
 		select {
 		case <-delay:
-			return
 		}
+		return
 	}
 }
