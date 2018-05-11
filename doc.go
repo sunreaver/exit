@@ -3,32 +3,32 @@ Package exit 接收系统退出信号，并发送给注册的业务端，然后�
 
 Example:
 
-	package main
+  package main
 
-	import (
-		"fmt"
+  import (
+    "fmt"
 
-		"github.com/sunreaver/exit"
-	)
+    "github.com/sunreaver/exit"
+  )
 
-	func main() {
-		o := make(chan *exit.Channel, 1)
-		c := exit.RegisteExiter(o)
+  func main() {
+    o := make(chan *exit.Channel, 1)
+    c := exit.RegisteExiter(o)
 
-		select {
-		case <-c:
-			fmt.Println("exit chan")
-		}
+    select {
+    case <-c:
+      fmt.Println("exit chan")
+    }
 
-		// do something
-		// example: flush buffer
+    // do something
+    // example: flush buffer
 
-		close(o)
+    close(o)
 
-		select {}
+    select {}
 
-		fmt.Println("ok")
-	}
+    fmt.Println("ok")
+  }
 
 */
 package exit
