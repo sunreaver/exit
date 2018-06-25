@@ -12,8 +12,7 @@ Example:
   )
 
   func main() {
-	over := exit.NewChannel()
-    c := exit.RegistExiter(over)
+    c, over := exit.RegistExiter()
 
     select {
     case <-c:
