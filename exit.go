@@ -27,7 +27,8 @@ func RegistExiter() (exiter <-chan *Channel, delay chan<- *Channel) {
 	return e, d
 }
 
-// UnRegistExiter will UnRegist退出信号
+// UnRegistExiter will 取消监听退出信号
+// 参数exiter必须为RegistExiter方法返回的exiter参数
 func UnRegistExiter(exiter <-chan *Channel) (unregisted bool) {
 	return data.Remove(exiter)
 }
